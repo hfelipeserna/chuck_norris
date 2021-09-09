@@ -5,15 +5,16 @@ import Button from "./components/Button";
 import Listado from "./components/Listado";
 
 function App() {
+  const frases = [
+    "Haz Click",
+    "Click si eres valiente",
+    "Prueba otra frase",
+    "Yo controlo el boton",
+  ];
 
-  const frases = ["Haz Click", "Click si eres valiente", "Prueba otra frase", "Yo controlo el boton"];
+  const indiceRandom = (arr) => Math.floor(Math.random() * arr.length);
 
-  /*let fraseBotonDefault = "Haz Click";
-  let fraseBotonUno = "Click si eres valiente";
-  let fraseBotonDos = "Prueba otra frase";
-  let fraseBotonTres = "Yo controlo el boton";*/
-
-  // Funcion que obtiene una frase del boton, espera un arreglo... REFACTORIZAR
+  // Funcion que obtiene una frase del boton, espera un arreglo.
   function fraseRandom(
     arreglo = [],
     fraseActual,
@@ -21,14 +22,9 @@ function App() {
     fraseDos,
     fraseTres
   ) {
-    let indice = Math.floor(Math.random() * 4); // Numero random
-    let arregloDeFrases = [fraseActual, fraseUno, fraseDos];
-    arregloDeFrases.push(fraseTres);
-    while (fraseActual === arregloDeFrases[indice]) {
-      indice = Math.floor(Math.random() * 4);
-    }
+    let indice = indiceRandom(arreglo); // Numero random
     fetchData();
-    return arregloDeFrases[indice];
+    return fraseActual === arreglo[indice] ? "Dale Click" : arreglo[indice];
   }
 
   const [fraseChuck, setFraseChuck] = useState(""); // Manera de react para crear estados
@@ -43,10 +39,8 @@ function App() {
   return (
     <div className="app">
       <Button
-        defaultFrase={fraseBotonDefault}
-        fraseUno={fraseBotonUno}
-        fraseDos={fraseBotonDos}
-        fraseTres={fraseBotonTres}
+        defaultFrase={frases[0]}
+        arregloDeFrases={frases}
         onClick={fraseRandom}
         fraseChuck={fraseChuck}
       />
