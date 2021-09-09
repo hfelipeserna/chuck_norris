@@ -1,6 +1,5 @@
 # Link to codesandbox:
 
-https://codesandbox.io/s/practical-https-1mim8
 
 # Getting Started with Create React App
 
